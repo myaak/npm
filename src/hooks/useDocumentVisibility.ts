@@ -1,6 +1,12 @@
 import { useCallback, useEffect, useState } from "react";
 
-export const useDocumentVisibility = () => {
+type DocumentVisibilityHook = {
+  count: number;
+  visible: boolean;
+  onVisibilityChange: (callback: (visible: boolean) => void) => () => void;
+};
+
+export const useDocumentVisibility: () => DocumentVisibilityHook = () => {
   const isDocumentVisible = (): boolean => {
     return typeof document === "object" ? !document.hidden : false;
   };

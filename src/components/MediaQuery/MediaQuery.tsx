@@ -1,5 +1,5 @@
 import { FC, ReactNode } from "react";
-import { useMediaQuery } from "../../hooks/useMediaQuery";
+import { useMediaQuery } from "use-media-query-hook-typescript";
 
 type ResolutionString = `${number}dppx`;
 interface MediaQueryOptions {

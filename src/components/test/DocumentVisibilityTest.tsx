@@ -1,4 +1,4 @@
-import { useDocumentVisibility } from "../../hooks/useDocumentVisibility";
+import { useDocumentVisibility } from "use-document-visibility-hook-ts";
 import { useEffect } from "react";
 
 const DocumentVisibilityTest = () => {
