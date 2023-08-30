@@ -9,14 +9,10 @@ type DocumentVisibilityHook = {
 export type CallbackFunction = (visible: boolean) => void;
 
 export const useDocumentVisibility: () => DocumentVisibilityHook = () => {
-  const isDocumentVisible = (): boolean => {
-    return typeof document === "object" ? !document.hidden : false;
-  };
-
-  const isDocumentHidden = document.hidden;
+  const isDocumentHidden = typeof document === "object" ? document.hidden : true;
 
   const [count, setCount] = useState<number>(0);
-  const [visible, setVisible] = useState<boolean>(isDocumentVisible());
+  const [visible, setVisible] = useState<boolean>(!isDocumentHidden);
 
   const onVisibilityChange = useCallback(
     (callback: CallbackFunction) => {
