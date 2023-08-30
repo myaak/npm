@@ -1,12 +1,12 @@
 import React from "react";
-import DocumentVisibilityTest from "./components/test/DocumentVisibilityTest";
-import MediaQueryComponentTest from "./components/test/MediaQueryComponentTest";
+import DocumentVisibilityExample from "./components/examples/DocumentVisibilityExample";
+import MediaQueryComponentTest from "./components/examples/MediaQueryComponentExample";
 
 const App = () => {
   return (
     <>
-      <DocumentVisibilityTest></DocumentVisibilityTest>
-      <MediaQueryComponentTest></MediaQueryComponentTest>
+      <DocumentVisibilityExample />
+      <MediaQueryComponentTest />
     </>
   );
 };

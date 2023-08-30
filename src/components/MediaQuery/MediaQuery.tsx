@@ -18,21 +18,21 @@ type MediaQueryProps = {
   children: ReactNode | ((media: boolean) => ReactNode);
 } & AtLeastOne<MediaQueryOptions>;
 
-const transformCamelCase = (key: string) => {
+const transformToKebabCase = (key: string) => {
   return key.replace(/([A-Z])/g, "-$1").toLowerCase();
 };
 
 const mediaOptionsToQuery = (props: MediaQueryOptions) => {
   const optionMappings: { [key in keyof MediaQueryOptions]: (value: MediaQueryOptions[key]) => string } = {
     orientation: (value) => `(orientation: ${value})`,
-    minWidth: (value) => `(${transformCamelCase("minWidth")}: ${value}px)`,
-    maxWidth: (value) => `(${transformCamelCase("maxWidth")}: ${value}px)`,
-    minHeight: (value) => `(${transformCamelCase("minHeight")}: ${value}px)`,
-    maxHeight: (value) => `(${transformCamelCase("maxHeight")}: ${value}px)`,
+    minWidth: (value) => `(${transformToKebabCase("minWidth")}: ${value}px)`,
+    maxWidth: (value) => `(${transformToKebabCase("maxWidth")}: ${value}px)`,
+    minHeight: (value) => `(${transformToKebabCase("minHeight")}: ${value}px)`,
+    maxHeight: (value) => `(${transformToKebabCase("maxHeight")}: ${value}px)`,
     minResolution: (value) =>
-      `(${transformCamelCase("minResolution")}: ${typeof value === "number" ? value + "dppx" : value})`,
+      `(${transformToKebabCase("minResolution")}: ${typeof value === "number" ? value + "dppx" : value})`,
     maxResolution: (value) =>
-      `(${transformCamelCase("maxResolution")}: ${typeof value === "number" ? value + "dppx" : value})`
+      `(${transformToKebabCase("maxResolution")}: ${typeof value === "number" ? value + "dppx" : value})`
   };
 
   return Object.entries(props)

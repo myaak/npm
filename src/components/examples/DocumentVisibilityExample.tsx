@@ -1,7 +1,7 @@
 import { useDocumentVisibility } from "use-document-visibility-hook-ts";
 import { useEffect } from "react";
 
-const DocumentVisibilityTest = () => {
+const DocumentVisibilityExample = () => {
   const { count, visible, onVisibilityChange } = useDocumentVisibility();
 
   useEffect(() => {
@@ -25,4 +25,4 @@ const DocumentVisibilityTest = () => {
   );
 };
 
-export default DocumentVisibilityTest;
+export default DocumentVisibilityExample;

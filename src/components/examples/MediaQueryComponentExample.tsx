@@ -1,7 +1,7 @@
 import MediaQuery from "../MediaQuery/MediaQuery";
 import React from "react";
 
-const mediaQueryComponentTest = () => {
+const MediaQueryComponentExample = () => {
   return (
     <div>
       <h1>Device Test!</h1>
@@ -18,4 +18,4 @@ const mediaQueryComponentTest = () => {
   );
 };
 
-export default mediaQueryComponentTest;
+export default MediaQueryComponentExample;

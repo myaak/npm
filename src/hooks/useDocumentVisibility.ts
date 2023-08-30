@@ -6,27 +6,34 @@ type DocumentVisibilityHook = {
   onVisibilityChange: (callback: (visible: boolean) => void) => () => void;
 };
 
+export type CallbackFunction = (visible: boolean) => void;
+
 export const useDocumentVisibility: () => DocumentVisibilityHook = () => {
   const isDocumentVisible = (): boolean => {
     return typeof document === "object" ? !document.hidden : false;
   };
 
+  const isDocumentHidden = document.hidden;
+
   const [count, setCount] = useState<number>(0);
   const [visible, setVisible] = useState<boolean>(isDocumentVisible());
 
-  const onVisibilityChange = useCallback((callback: (visible: boolean) => void) => {
-    const wrapperCallback = () => callback(!document.hidden);
-    document.addEventListener("visibilitychange", wrapperCallback);
+  const onVisibilityChange = useCallback(
+    (callback: CallbackFunction) => {
+      const wrapperCallback = () => callback(!isDocumentHidden);
+      document.addEventListener("visibilitychange", wrapperCallback);
 
-    return () => {
-      document.removeEventListener("visibilitychange", wrapperCallback);
-    };
-  }, []);
+      return () => {
+        document.removeEventListener("visibilitychange", wrapperCallback);
+      };
+    },
+    [isDocumentHidden]
+  );
 
   const visibilityChangeHandler = useCallback(() => {
-    if (document.hidden) setCount((prev: number) => prev + 1);
-    setVisible(!document.hidden);
-  }, []);
+    if (isDocumentHidden) setCount((prev) => prev + 1);
+    setVisible(!isDocumentHidden);
+  }, [isDocumentHidden]);
 
   useEffect(() => {
     document.addEventListener("visibilitychange", visibilityChangeHandler);
